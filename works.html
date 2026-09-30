@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TXT 2026 應援插畫系列 ★ GALLERY</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Syne', 'sans-serif'],
+            mono: ['Space Grotesk', 'monospace']
+          },
+          colors: {
+            cblue: {
+              DEFAULT: '#002BFF',
+              dark: '#001489',
+              light: '#E0E7FF',
+              sky: '#93C5FD'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #002BFF;
+      color: #ffffff;
+      font-family: 'Space Grotesk', sans-serif;
+      overflow-x: hidden;
+    }
+    .bg-grid-pattern {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    }
+    .tag-box {
+      border: 1px solid #ffffff;
+      background: rgba(0, 43, 255, 0.85);
+      backdrop-filter: blur(4px);
+      padding: 2px 8px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: inline-block;
+      box-shadow: 2px 2px 0px #ffffff;
+    }
+    .tag-box-white {
+      border: 1px solid #002BFF;
+      background: #ffffff;
+      color: #002BFF;
+      padding: 2px 8px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      display: inline-block;
+      box-shadow: 2px 2px 0px #001489;
+    }
+    .gallery-card {
+      background: #ffffff;
+      border: 3px solid #ffffff;
+      box-shadow: 8px 8px 0px #001489;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .gallery-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 12px 12px 0px #ffffff;
+    }
+    .star-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      animation: flyStar 1s ease-out forwards;
+    }
+    @keyframes flyStar {
+      0% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 1; }
+      50% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.3) rotate(180deg); opacity: 0.9; }
+      100% { transform: translate(calc(-50% + var(--dx) * 1.5), calc(-50% + var(--dy) * 1.5)) scale(0) rotate(360deg); opacity: 0; }
+    }
+  </style>
+</head>
+
+<body class="bg-grid-pattern min-h-screen relative selection:bg-white selection:text-cblue">
+
+  <!-- 頂部導航 -->
+  <header class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between relative z-40 border-b-2 border-white/20">
+    <a href="index.html" class="tag-box-white flex items-center gap-2 hover:bg-cblue hover:text-white transition-colors">
+      <i data-lucide="arrow-left" class="w-4 h-4"></i> BACK TO PORTFOLIO
+    </a>
+    <div class="tag-box font-mono text-xs">
+      ★ ARCHIVE : TXT 2026 FAN SUPPORT
+    </div>
+  </header>
+
+  <!-- 頁面標題區 -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-12">
+    <div class="flex flex-col md:flex-row md:items-end justify-between border-b-2 border-white pb-6 mb-8 gap-4">
+      <div>
+        <div class="flex items-center gap-2 text-blue-200 text-xs font-mono mb-2">
+          <span>// TXT 2026 ILLUSTRATION TOPICS</span>
+          <span>✦✦✦</span>
+        </div>
+        <h1 class="text-4xl sm:text-6xl font-display font-black text-white" id="page-title">插畫主題專區</h1>
+      </div>
+      <p class="text-blue-100 text-sm max-w-md font-sans" id="page-desc">
+        點擊進入特定主題分區，即可瀏覽該主題下的所有系列圖片與燈箱切換。
+      </p>
+    </div>
+
+    <!-- 主題切換導航按鈕 (Category Tabs) -->
+    <div class="flex flex-wrap gap-2 mb-8 items-center" id="category-tabs">
+      <button onclick="switchCategory('all')" id="tab-all" class="tag-box-white px-4 py-2 text-xs font-bold cursor-pointer">ALL TOPICS (全部主題)</button>
+    </div>
+
+    <!-- 視圖 1：主題列表視圖 (Topics Overview) -->
+    <div id="topics-view" class="grid grid-cols-1 md:grid-cols-3 gap-8"></div>
+
+    <!-- 視圖 2：單一主題照片列表視圖 (Topic Photos Grid) -->
+    <div id="single-topic-view" class="hidden">
+      <div class="flex items-center justify-between mb-6">
+        <button onclick="showAllTopics()" class="tag-box flex items-center gap-2 hover:bg-white hover:text-cblue transition-colors text-xs font-bold">
+          <i data-lucide="chevron-left" class="w-4 h-4"></i> 返回所有主題
+        </button>
+        <span class="text-xs font-mono text-blue-200" id="current-topic-count">0 PHOTOS</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="photos-grid"></div>
+    </div>
+  </main>
+
+  <!-- 左右切換式大圖燈箱 Modal（僅在當前主題內循環切換） -->
+  <div id="img-modal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-cblue/90 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300" onclick="closePreview()">
+    <div class="relative max-w-4xl w-full bg-white border-4 border-white shadow-[12px_12px_0px_#000] p-4 sm:p-6 text-cblue" onclick="event.stopPropagation()">
+      
+      <!-- 頂部資訊列 -->
+      <div class="flex items-center justify-between border-b-2 border-cblue pb-3 mb-4">
+        <div class="flex items-center gap-2">
+          <span id="preview-index" class="tag-box-white text-[11px]">FIG. 01 / 02</span>
+          <span class="text-xs font-mono uppercase font-bold text-gray-500" id="preview-topic-name">TOPIC NAME</span>
+        </div>
+        <button onclick="closePreview()" class="tag-box hover:bg-cblue hover:text-white transition-colors text-xs font-bold flex items-center gap-1">
+          ✕ CLOSE [ESC]
+        </button>
+      </div>
+
+      <!-- 圖片展示區 -->
+      <div class="relative w-full h-[55vh] sm:h-[65vh] bg-cblue border-2 border-cblue overflow-hidden flex items-center justify-center group">
+        <img id="preview-src" src="" alt="Full Preview" class="w-full h-full object-contain select-none" />
+
+        <!-- 上一張按鈕 -->
+        <button onclick="prevImage(event)" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white text-cblue border-2 border-cblue p-2.5 sm:p-3 font-black shadow-[3px_3px_0px_#001489] hover:scale-110 active:translate-x-1 transition-all z-20" title="上一張 (←)">
+          <i data-lucide="chevron-left" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+        </button>
+
+        <!-- 下一張按鈕 -->
+        <button onclick="nextImage(event)" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white text-cblue border-2 border-cblue p-2.5 sm:p-3 font-black shadow-[3px_3px_0px_#001489] hover:scale-110 active:translate-x-1 transition-all z-20" title="下一張 (→)">
+          <i data-lucide="chevron-right" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+        </button>
+      </div>
+
+      <!-- 底部作品說明與切換鍵 -->
+      <div class="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
+        <div>
+          <h3 class="font-display font-black text-xl" id="preview-title">作品標題</h3>
+          <p class="text-xs text-gray-600 font-mono mt-0.5" id="preview-desc">PROCREATE / DIGITAL ART</p>
+        </div>
+        <div class="flex gap-2">
+          <button onclick="prevImage(event)" class="px-4 py-2 bg-cblue text-white font-bold text-xs uppercase tracking-wider hover:bg-[#001489] transition-colors border border-cblue">
+            ◀ PREV
+          </button>
+          <button onclick="nextImage(event)" class="px-4 py-2 bg-cblue text-white font-bold text-xs uppercase tracking-wider hover:bg-[#001489] transition-colors border border-cblue">
+            NEXT ▶
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 1. 主題式資料結構（可在每個主題的 images 陣列中新增或替換照片）
+    const topicData = [
+      {
+        id: 'character',
+        name: '角色插畫設計',
+        cover: '未命名的作品 21.jpeg',
+        desc: '包含主視覺角色造型、表情與應援服裝之系列原畫。',
+        images: [
+          {
+            src: '未命名的作品 21.jpeg',
+            title: '主視覺角色插畫 A',
+            desc: 'PROCREATE / CHARACTER VISUAL'
+          },
+          {
+            src: '未命名的作品 34.jpeg',
+            title: '主視覺角色概念分鏡 B',
+            desc: 'CONCEPT / VISUAL DESIGN'
+          }
+        ]
+      },
+      {
+        id: 'motion',
+        name: '應援動作教學分鏡',
+        cover: '未命名的作品 24.jpeg',
+        desc: '專為演唱會現場應援所繪製的手勢與節奏分解動作示範。',
+        images: [
+          {
+            src: '未命名的作品 24.jpeg',
+            title: '應援教學動作示範 01',
+            desc: 'PROCREATE / FRAME ART'
+          }
+        ]
+      },
+      {
+        id: 'merch',
+        name: '應援周邊與貼紙圖案',
+        cover: '未命名的作品 27.jpeg',
+        desc: '延伸設計之實體周邊、透卡、手幅與紀念貼紙向量圖案。',
+        images: [
+          {
+            src: '未命名的作品 27.jpeg',
+            title: '應援周邊圖案設計 01',
+            desc: 'STICKER / MERCHANDISE'
+          }
+        ]
+      }
+    ];
+
+    let currentActiveTopic = null;
+    let currentActiveImages = [];
+    let currentImgIndex = 0;
+
+    // 2. 初始化頁面
+    function initPage() {
+      renderCategoryTabs();
+      renderTopicsView();
+      lucide.createIcons();
+    }
+
+    // 渲染頂部標籤
+    function renderCategoryTabs() {
+      const container = document.getElementById('category-tabs');
+      topicData.forEach(topic => {
+        const btn = document.createElement('button');
+        btn.id = `tab-${topic.id}`;
+        btn.className = 'tag-box px-4 py-2 text-xs cursor-pointer hover:bg-white hover:text-cblue transition-colors';
+        btn.innerText = topic.name;
+        btn.onclick = () => switchCategory(topic.id);
+        container.appendChild(btn);
+      });
+    }
+
+    // 渲染全部主題總覽卡片
+    function renderTopicsView() {
+      const view = document.getElementById('topics-view');
+      view.innerHTML = '';
+      
+      topicData.forEach((topic, idx) => {
+        const card = document.createElement('div');
+        card.className = 'gallery-card p-5 flex flex-col justify-between cursor-pointer group';
+        card.onclick = () => openTopic(topic.id);
+
+        card.innerHTML = `
+          <div>
+            <div class="flex justify-between items-start mb-3">
+              <span class="tag-box-white text-[10px]">TOPIC 0${idx + 1}</span>
+              <span class="text-xs font-mono font-bold text-gray-500">${topic.images.length} PHOTOS</span>
+            </div>
+            <div class="h-60 bg-cblue overflow-hidden border-2 border-cblue mb-4 relative">
+              <img src="${topic.cover}" alt="${topic.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div class="absolute inset-0 bg-blue-900/20 group-hover:bg-transparent transition-colors"></div>
+              <span class="absolute bottom-2 right-2 tag-box-white text-[10px]">點擊進入主題 →</span>
+            </div>
+            <h3 class="font-display font-black text-xl text-cblue group-hover:text-blue-700 transition-colors">${topic.name}</h3>
+            <p class="text-xs text-gray-600 mt-2 font-sans line-clamp-2">${topic.desc}</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-cblue/20 flex items-center justify-between text-cblue">
+            <span class="text-[11px] font-bold">[ 瀏覽專區 ]</span>
+            <span class="font-bold text-sm">→</span>
+          </div>
+        `;
+        view.appendChild(card);
+      });
+    }
+
+    // 3. 進入單一主題專區
+    function openTopic(topicId) {
+      const topic = topicData.find(t => t.id === topicId);
+      if (!topic) return;
+
+      currentActiveTopic = topic;
+      currentActiveImages = topic.images;
+
+      // 切換視圖
+      document.getElementById('topics-view').classList.add('hidden');
+      document.getElementById('single-topic-view').classList.remove('hidden');
+
+      // 更新標題與數量
+      document.getElementById('page-title').innerText = topic.name;
+      document.getElementById('page-desc').innerText = topic.desc;
+      document.getElementById('current-topic-count').innerText = `${topic.images.length} PHOTOS IN THIS TOPIC`;
+
+      // 更新標籤樣式
+      updateTabStyles(topicId);
+
+      // 渲染單一主題圖片
+      const photosGrid = document.getElementById('photos-grid');
+      photosGrid.innerHTML = '';
+
+      topic.images.forEach((img, idx) => {
+        const item = document.createElement('div');
+        item.className = 'gallery-card p-4 flex flex-col justify-between cursor-pointer group';
+        item.onclick = () => openLightbox(idx);
+
+        item.innerHTML = `
+          <div class="h-64 sm:h-72 bg-cblue overflow-hidden border-2 border-cblue mb-4 relative">
+            <img src="${img.src}" alt="${img.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            <span class="absolute top-2 left-2 tag-box-white text-[10px]">0${idx + 1}</span>
+          </div>
+          <div class="text-cblue">
+            <h3 class="font-display font-black text-base group-hover:text-blue-700 transition-colors">${img.title}</h3>
+            <p class="text-[11px] text-gray-600 mt-1 font-mono">${img.desc}</p>
+          </div>
+        `;
+        photosGrid.appendChild(item);
+      });
+
+      lucide.createIcons();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // 返回所有主題
+    function showAllTopics() {
+      currentActiveTopic = null;
+      document.getElementById('single-topic-view').classList.add('hidden');
+      document.getElementById('topics-view').classList.remove('hidden');
+
+      document.getElementById('page-title').innerText = '插畫主題專區';
+      document.getElementById('page-desc').innerText = '點擊進入特定主題分區，即可瀏覽該主題下的所有系列圖片與燈箱切換。';
+
+      updateTabStyles('all');
+    }
+
+    // 標籤切換處理
+    function switchCategory(catId) {
+      if (catId === 'all') {
+        showAllTopics();
+      } else {
+        openTopic(catId);
+      }
+    }
+
+    function updateTabStyles(activeId) {
+      const buttons = document.querySelectorAll('#category-tabs button');
+      buttons.forEach(btn => {
+        btn.className = 'tag-box px-4 py-2 text-xs cursor-pointer hover:bg-white hover:text-cblue transition-colors';
+      });
+      const activeBtn = document.getElementById(`tab-${activeId}`);
+      if (activeBtn) {
+        activeBtn.className = 'tag-box-white px-4 py-2 text-xs font-bold cursor-pointer';
+      }
+    }
+
+    // 4. 燈箱功能（限定於當前主題的 images）
+    function openLightbox(index) {
+      currentImgIndex = index;
+      updateLightboxContent();
+      const modal = document.getElementById('img-modal');
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    function updateLightboxContent() {
+      const img = currentActiveImages[currentImgIndex];
+      document.getElementById('preview-src').src = img.src;
+      document.getElementById('preview-title').innerText = img.title;
+      document.getElementById('preview-desc').innerText = img.desc;
+      document.getElementById('preview-topic-name').innerText = currentActiveTopic.name;
+      document.getElementById('preview-index').innerText = `FIG. 0${currentImgIndex + 1} / 0${currentActiveImages.length}`;
+      lucide.createIcons();
+    }
+
+    function closePreview() {
+      const modal = document.getElementById('img-modal');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    function prevImage(e) {
+      if (e) e.stopPropagation();
+      currentImgIndex = (currentImgIndex - 1 + currentActiveImages.length) % currentActiveImages.length;
+      updateLightboxContent();
+    }
+
+    function nextImage(e) {
+      if (e) e.stopPropagation();
+      currentImgIndex = (currentImgIndex + 1) % currentActiveImages.length;
+      updateLightboxContent();
+    }
+
+    // 5. 鍵盤事件
+    document.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('img-modal');
+      if (modal.classList.contains('opacity-0')) return;
+
+      if (e.key === 'ArrowLeft') prevImage();
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'Escape') closePreview();
+    });
+
+    // 6. 星芒點擊特效
+    const starShapes = ['★', '✦', '✶', '✸'];
+    window.addEventListener('click', (e) => {
+      if (e.target.closest('#img-modal') && !e.target.closest('button')) return;
+      for (let i = 0; i < 4; i++) {
+        const star = document.createElement('div');
+        star.className = 'star-particle text-white font-bold select-none';
+        star.innerText = starShapes[Math.floor(Math.random() * starShapes.length)];
+        const angle = Math.random() * Math.PI * 2;
+        const dist = 30 + Math.random() * 60;
+        star.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
+        star.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
+        star.style.left = `${e.clientX}px`;
+        star.style.top = `${e.clientY}px`;
+        star.style.fontSize = 16 + Math.random() * 20 + 'px';
+        document.body.appendChild(star);
+        setTimeout(() => star.remove(), 1000);
+      }
+    });
+
+    initPage();
+  </script>
+</body>
+</html>
