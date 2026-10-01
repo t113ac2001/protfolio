@@ -40,6 +40,7 @@
       color: #ffffff;
       font-family: 'Space Grotesk', sans-serif;
       overflow-x: hidden;
+      -webkit-tap-highlight-color: transparent;
     }
 
     /* 網格背景紋理 */
@@ -72,23 +73,6 @@
       font-weight: bold;
       display: inline-block;
       box-shadow: 2px 2px 0px #001489;
-    }
-
-    /* 門票式按鈕樣式 */
-    .ticket-btn {
-      background: #ffffff;
-      color: #002BFF;
-      border: 2px dashed #002BFF;
-      box-shadow: 3px 3px 0px #001489;
-      transform: rotate(-1deg);
-      transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    .ticket-btn:hover {
-      background: #002BFF;
-      color: #ffffff;
-      border-color: #ffffff;
-      box-shadow: 4px 4px 0px #ffffff;
-      transform: rotate(0deg) translateY(-2px);
     }
 
     /* 撕紙/斜角剪貼卡片效果 */
@@ -225,7 +209,7 @@
       </div>
     </div>
 
-    <!-- 巨型剪貼排版標題區塊（SVG 自適應，不超出版面） -->
+    <!-- 巨型剪貼排版標題區塊 -->
     <div class="relative w-full border-b-2 border-white pb-4 my-2">
       <div class="absolute -top-6 right-1/4 text-white opacity-20 pointer-events-none select-none text-[8rem] md:text-[12rem] leading-none animate-pulse">
         ✦
@@ -267,8 +251,8 @@
           <a href="#projects" class="px-8 py-4 bg-white text-cblue font-black tracking-wider uppercase rounded-none border-2 border-white shadow-[6px_6px_0px_#000] hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0px_#000] transition-all flex items-center gap-3">
             VIEW WORKS <span>→</span>
           </a>
-          <button onclick="burstStars(event)" class="px-6 py-4 bg-cblue text-white font-bold border-2 border-white shadow-[4px_4px_0px_#fff] hover:bg-white hover:text-cblue transition-all flex items-center gap-2">
-            <span>Blingbling按鈕</span>
+          <button onclick="burstStars(event)" class="px-6 py-4 bg-cblue text-white font-bold border-2 border-white shadow-[4px_4px_0px_#fff] hover:bg-white hover:text-cblue transition-all flex items-center gap-2 cursor-pointer">
+            <span>✨ Blingbling按鈕</span>
           </button>
         </div>
       </div>
@@ -306,31 +290,20 @@
     </div>
   </section>
 
-  <!-- 作品篩選與展示區塊 Projects -->
+  <!-- 作品展示區塊 Projects -->
   <section id="projects" class="py-20 px-6 max-w-7xl mx-auto border-t-2 border-white/20">
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
       <div>
         <div class="flex items-center gap-3 text-blue-300 text-sm mb-1 font-mono">
           <span>// 01. SELECTED WORKS</span>
           <span>✦✦✦</span>
-          <!-- 管理員快速發布入口 -->
-          <a href="admin.html" target="_blank" class="tag-box-white text-[10px] hover:bg-cblue hover:text-white transition-colors">
-            ＋ NEW POST / 管理員發布
-          </a>
+           <span>歡迎點擊查看更多 觀看更多作品</span>
         </div>
-        <h2 class="text-4xl md:text-6xl font-display font-black">精選專案展示</h2>
-      </div>
-
-      <!-- 分類標籤切換按鈕 -->
-      <div class="flex flex-wrap gap-2">
-        <button onclick="filterWorks('all')" class="filter-btn tag-box-white px-4 py-2 text-xs font-bold cursor-pointer">ALL (全部)</button>
-        <button onclick="filterWorks('ui')" class="filter-btn tag-box px-4 py-2 text-xs cursor-pointer hover:bg-white hover:text-cblue">UI/UX 介面</button>
-        <button onclick="filterWorks('branding')" class="filter-btn tag-box px-4 py-2 text-xs cursor-pointer hover:bg-white hover:text-cblue">視覺設計</button>
-        <button onclick="filterWorks('tech')" class="filter-btn tag-box px-4 py-2 text-xs cursor-pointer hover:bg-white hover:text-cblue">插畫</button>
+        <h2 class="text-4xl md:text-6xl font-display font-black">精選作品展示</h2>
       </div>
     </div>
 
-    <!-- 動態作品網格（預設作品 + 後台發布作品） -->
+    <!-- 作品網格 (活動規劃設計 / 視覺設計 / 插畫) -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="works-grid"></div>
   </section>
 
@@ -344,7 +317,7 @@
         <div class="border border-white p-4 text-center hover:bg-white hover:text-cblue transition-colors cursor-default">
           <div class="text-2xl mb-1">✦</div>
           <div class="font-bold text-sm">視覺設計</div>
-          <div class="text-[10px] opacity-70"> Visual Design </div>
+          <div class="text-[10px] opacity-70">Visual Design</div>
         </div>
         <div class="border border-white p-4 text-center hover:bg-white hover:text-cblue transition-colors cursor-default">
           <div class="text-2xl mb-1">✦</div>
@@ -354,23 +327,22 @@
         <div class="border border-white p-4 text-center hover:bg-white hover:text-cblue transition-colors cursor-default">
           <div class="text-2xl mb-1">✦</div>
           <div class="font-bold text-sm">插畫繪圖</div>
-          <div class="text-[10px] opacity-70">illustration</div>
-           </div>
+          <div class="text-[10px] opacity-70">Illustration</div>
+        </div>
         <div class="border border-white p-4 text-center hover:bg-white hover:text-cblue transition-colors cursor-default">
           <div class="text-2xl mb-1">✦</div>
-          <div class="font-bold text-sm">網頁設計</div>
-          <div class="text-[10px] opacity-70">（我會一點）</div>
+          <div class="font-bold text-sm">活動規劃設計</div>
+          <div class="text-[10px] opacity-70">Event Planning</div>
         </div>
-           <div class="border border-white p-4 text-center hover:bg-white hover:text-cblue transition-colors cursor-default">
+        <div class="border border-white p-4 text-center hover:bg-white hover:text-cblue transition-colors cursor-default">
           <div class="text-2xl mb-1">✦</div>
           <div class="font-bold text-sm">逐格動畫</div>
           <div class="text-[10px] opacity-70">（我會一點）</div>
-          </div>
-         <div class="border border-white p-4 text-center hover:bg-white hover:text-cblue transition-colors cursor-default">
+        </div>
+        <div class="border border-white p-4 text-center hover:bg-white hover:text-cblue transition-colors cursor-default">
           <div class="text-2xl mb-1">✦</div>
           <div class="font-bold text-sm">追星</div>
           <div class="text-[10px] opacity-70">我最拿手＊比讚＊</div>
-        </div>
         </div>
       </div>
     </div>
@@ -394,23 +366,22 @@
     </div>
 
     <div class="flex flex-col sm:flex-row justify-between items-center text-[11px] text-blue-200 mt-16 pt-8 border-t border-white/20">
-      <span>2026.CHEN YEN-EN </span>
+      <span>2026.CHEN YEN-EN</span>
       <span class="mt-2 sm:mt-0 font-mono">[ 2026 ]</span>
     </div>
   </footer>
 
-  <!-- 彈窗 Modal (支援作品大圖與外部/內部連結跳轉) -->
+  <!-- 彈窗 Modal -->
   <div id="info-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-cblue/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
     <div class="bg-white text-cblue max-w-lg w-full p-6 sm:p-8 border-4 border-white shadow-[12px_12px_0px_#000] relative max-h-[90vh] overflow-y-auto">
       <div class="flex justify-between items-start border-b-2 border-cblue pb-3 mb-4">
         <div>
-          <span id="modal-sub" class="text-[10px] font-mono uppercase bg-cblue text-white px-2 py-0.5 font-bold">CATEGORY</span>
+          <span id="modal-sub" class="text-[10px] font-mono uppercase bg-cblue text-white px-2 py-0.5 font-bold">THEME</span>
           <h3 id="modal-title" class="text-2xl font-display font-black mt-2">專案標題</h3>
         </div>
         <button onclick="closeModal()" class="text-2xl font-black hover:scale-125 transition-transform p-1">✕</button>
       </div>
 
-      <!-- 彈窗大圖展示區 -->
       <div id="modal-img-wrapper" class="w-full h-48 sm:h-56 bg-cblue overflow-hidden border-2 border-cblue mb-4 hidden">
         <img id="modal-img" src="" alt="Project Image" class="w-full h-full object-cover" />
       </div>
@@ -419,107 +390,93 @@
       
       <div id="modal-tags" class="flex flex-wrap gap-2 mb-6"></div>
       
-      <div class="flex flex-col sm:flex-row gap-3">
-        <!-- 跳轉連結按鈕（若有連結才顯示） -->
-        <a id="modal-link-btn" href="#" target="_blank" rel="noopener noreferrer" class="hidden flex-1 py-3 bg-white text-cblue border-2 border-cblue font-black text-xs uppercase tracking-wider text-center hover:bg-cblue hover:text-white transition-colors shadow-[3px_3px_0px_#001489]">
-          [ 前往專案頁面 ↗ ]
-        </a>
-        <button onclick="closeModal()" class="flex-1 py-3 bg-cblue text-white font-black text-xs uppercase tracking-wider hover:bg-[#001489] transition-colors border-2 border-cblue">
-          [ 關閉 CLOSE ]
-        </button>
+      <div class="flex flex-col sm:flex-row gap-3" id="modal-btn-group">
+        <!-- 動態注入查看按鈕 -->
       </div>
     </div>
   </div>
 
   <!-- 互動效果 JavaScript -->
   <script>
-    // 預設作品資料
-    const initialProjects = [
+    // 作品設定資料
+    const projects = [
       {
-        id: 'default_1',
+        id: 'event_1',
         title: '演唱會應援網站',
-        category: 'ui',
+        theme: '活動規劃設計',
         desc: '專為粉絲打造的應援資訊整合平台，提供「歌曲應援練習室」、「搶票祈願木魚」、「演唱會日期倒數」等多元互動功能，協助粉絲快速掌握活動資訊。',
         img: '截圖 2026-09-09 下午12.44.57.jpeg',
-        tags: ['HTML', 'CSS', 'JavaScript'],
-        link: 'https://twdohit.vercel.app'
+        tags: ['HTML', 'CSS', 'JavaScript', '活動規劃設計'],
+        externalUrl: 'https://twdohit.vercel.app', // 線上網站
+        detailUrl: 'event-planning.html'          // 查看更多頁面
       },
       {
-        id: 'default_2',
+        id: 'visual_2',
         title: '偶像生日咖啡廳主視覺設計',
-        category: 'branding',
+        theme: '視覺設計',
         desc: '以偶像生日為主題，規劃咖啡廳整體視覺風格與品牌形象，打造具有主題性與一致性的視覺體驗。',
         img: 'SAN櫃檯布條.PNG',
-        tags: ['ADOBE ILLUSTRATOR', 'ADOBE PHOTOSHOP'],
-        link: ''
+        tags: ['ADOBE ILLUSTRATOR', 'ADOBE PHOTOSHOP', '視覺設計'],
+        detailUrl: 'visual-design.html'
       },
       {
-        id: 'default_3',
+        id: 'illust_3',
         title: '應援教學影片插畫',
-        category: 'tech',
-        desc: '為 TXT 2026 演唱會量身打造的應援視覺與動作分解教學插畫。點擊下方專屬門票開啟分鏡相簿畫廊。',
+        theme: '插畫',
+        desc: '為 TXT 2026 演唱會量身打造的應援視覺與動作分解教學插畫。點擊「查看更多」前往專屬相簿畫廊。',
         img: '未命名的作品.jpeg',
-        tags: ['Procreate', 'Illustration', 'TXT 2026', 'FanSupport'],
-        link: 'works.html',
-        isGalleryTicket: true
+        tags: ['Procreate', 'Illustration', 'TXT 2026', '插畫'],
+        detailUrl: 'works.html'
       }
     ];
 
-    // 初始化渲染作品列表 (讀取 LocalStorage + 預設作品)
+    // 初始化渲染作品列表
     function loadProjects() {
-      const stored = JSON.parse(localStorage.getItem('my_portfolio_projects') || '[]');
-      const allProjects = [...stored, ...initialProjects];
       const grid = document.getElementById('works-grid');
       grid.innerHTML = '';
 
-      allProjects.forEach(proj => {
+      projects.forEach(proj => {
         const card = document.createElement('div');
         card.className = 'work-card collage-card p-6 cursor-pointer flex flex-col justify-between';
-        card.dataset.category = proj.category;
-        card.onclick = () => openModal(proj.title, proj.category, proj.desc, proj.tags, proj.img, proj.link);
+        card.onclick = () => openModal(proj);
 
-        const isExternal = proj.link && proj.link.startsWith('http');
+        // 按鈕區塊生成
+        let btnHtml = '<div class="flex items-center gap-2 flex-wrap">';
         
-        // 判斷按鈕樣式：若是應援插畫則渲染門票式按鈕，否則為一般標籤按鈕
-        let linkBtnHtml = '';
-        if (proj.isGalleryTicket || proj.link === 'works.html') {
-          linkBtnHtml = `
-            <a href="works.html" onclick="event.stopPropagation();" class="ticket-btn text-[11px] font-black py-1.5 px-3 inline-flex items-center gap-1.5">
-              <span> 查看更多 </span>
-              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
-            </a>
-          `;
-        } else if (proj.link) {
-          linkBtnHtml = `
-            <a href="${proj.link}" ${isExternal ? 'target="_blank" rel="noopener noreferrer"' : ''} onclick="event.stopPropagation();" class="tag-box-white hover:bg-cblue hover:text-white transition-colors text-[11px] font-bold py-1 px-3 inline-flex items-center gap-1 shadow-[2px_2px_0px_#001489]">
-              ${isExternal ? '前往網站' : '查看系列作品'} <i data-lucide="${isExternal ? 'external-link' : 'image'}" class="w-3.5 h-3.5"></i>
+        // 若有外部線上網站按鈕 (活動規劃設計)
+        if (proj.externalUrl) {
+          btnHtml += `
+            <a href="${proj.externalUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="tag-box-white hover:bg-cblue hover:text-white transition-colors text-[11px] font-bold py-1.5 px-3 inline-flex items-center gap-1 shadow-[2px_2px_0px_#001489]">
+              <span>前往網站</span> <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
             </a>
           `;
         }
 
-        // 圖片樣式：如果是相簿則加上疊卡效果
-        const imgContainerClass = proj.isGalleryTicket 
-          ? 'stacked-cards h-44 mb-4' 
-          : 'h-44 bg-cblue mb-4';
+        // 查看更多按鈕
+        if (proj.detailUrl) {
+          btnHtml += `
+            <a href="${proj.detailUrl}" onclick="event.stopPropagation();" class="tag-box-white hover:bg-cblue hover:text-white transition-colors text-[11px] font-bold py-1.5 px-3 inline-flex items-center gap-1 shadow-[2px_2px_0px_#001489]">
+              <span>查看更多</span> <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+          `;
+        }
+        btnHtml += '</div>';
 
         card.innerHTML = `
           <div>
             <div class="flex justify-between items-start mb-3">
-              <span class="tag-box-white text-[10px] uppercase">${proj.category}</span>
+              <span class="tag-box-white text-[10px] uppercase font-bold">${proj.theme}</span>
               <span class="text-xl">★</span>
             </div>
-            <div class="${imgContainerClass}">
-              <div class="w-full h-full bg-cblue text-white relative overflow-hidden border-2 border-cblue group z-10">
-                <img src="${proj.img}" alt="${proj.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                ${proj.isGalleryTicket ? '<span class="absolute bottom-2 right-2 tag-box-white text-[9px] font-mono">SERIES ★ 4P</span>' : ''}
-              </div>
+            <div class="h-44 bg-cblue text-white relative overflow-hidden mb-4 border-2 border-cblue group">
+              <img src="${proj.img}" alt="${proj.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             </div>
             <h3 class="text-xl font-display font-black leading-tight mb-2">${proj.title}</h3>
             <p class="text-xs text-gray-700 leading-relaxed font-sans line-clamp-3">${proj.desc}</p>
           </div>
-          <div class="mt-6 pt-4 border-t border-cblue/20 flex items-center justify-between gap-2">
-            ${linkBtnHtml}
-            <span class="text-[10px] font-bold tracking-wider text-cblue flex items-center gap-1">[ 展開詳細 → ]</span>
+          <div class="mt-6 pt-4 border-t border-cblue/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            ${btnHtml}
+            <span class="text-[10px] font-bold tracking-wider text-cblue flex items-center gap-1 shrink-0">[ 展開簡介 → ]</span>
           </div>
         `;
         grid.appendChild(card);
@@ -528,22 +485,19 @@
       lucide.createIcons();
     }
 
-   //1. 全螢幕點擊 & 手機觸控產生放射星芒效果 (支援手機與桌機)
+    // 1. 全螢幕點擊 & 手機觸控產生放射星芒效果
     const starShapes = ['★', '✦', '✶', '✸', '✹'];
 
-    // 統一觸發函式
     function handleScreenTouch(clientX, clientY, target) {
       if (target && target.closest('#info-modal') && !target.closest('button')) return;
       spawnStar(clientX, clientY);
     }
 
-    // 桌機滑鼠點擊監聽
     window.addEventListener('click', (e) => {
       if (e.detail === 0 && 'ontouchstart' in window) return;
       handleScreenTouch(e.clientX, e.clientY, e.target);
     });
 
-    // 手機觸控監聽
     window.addEventListener('touchstart', (e) => {
       if (!e.touches || e.touches.length === 0) return;
       const touch = e.touches[0];
@@ -574,7 +528,6 @@
       }
     }
 
-    //按鈕主動施放星芒
     function burstStars(e) {
       e.stopPropagation();
       let x, y;
@@ -591,67 +544,56 @@
       }
     }
 
-    // 2. 分類切換篩選
-    function filterWorks(category) {
-      const cards = document.querySelectorAll('.work-card');
-      const buttons = document.querySelectorAll('.filter-btn');
-
-      buttons.forEach(btn => {
-        btn.className = 'filter-btn tag-box px-4 py-2 text-xs cursor-pointer hover:bg-white hover:text-cblue';
-      });
-      event.currentTarget.className = 'filter-btn tag-box-white px-4 py-2 text-xs font-bold cursor-pointer';
-
-      cards.forEach(card => {
-        if (category === 'all' || card.dataset.category === category) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    }
-
-    // 3. Modal 彈窗控制
+    // 2. Modal 彈窗控制
     const modal = document.getElementById('info-modal');
-    function openModal(title, category, desc, tags, imgSrc = '', linkUrl = '') {
-      document.getElementById('modal-title').innerText = title;
-      document.getElementById('modal-sub').innerText = category;
-      document.getElementById('modal-desc').innerText = desc;
+    function openModal(proj) {
+      document.getElementById('modal-title').innerText = proj.title;
+      document.getElementById('modal-sub').innerText = proj.theme;
+      document.getElementById('modal-desc').innerText = proj.desc;
 
       const imgWrapper = document.getElementById('modal-img-wrapper');
       const imgElem = document.getElementById('modal-img');
-      if (imgSrc) {
-        imgElem.src = imgSrc;
+      if (proj.img) {
+        imgElem.src = proj.img;
         imgWrapper.classList.remove('hidden');
       } else {
         imgWrapper.classList.add('hidden');
       }
 
-      const linkBtn = document.getElementById('modal-link-btn');
-      if (linkUrl) {
-        linkBtn.href = linkUrl;
-        if (linkUrl.startsWith('http')) {
-          linkBtn.target = '_blank';
-          linkBtn.innerText = '[ 前往專案網站 ↗ ]';
-        } else if (linkUrl === 'works.html') {
-          linkBtn.target = '_self';
-          linkBtn.innerText = '[ 🎫 進入應援分鏡包 (4) ↗ ]';
-        } else {
-          linkBtn.target = '_self';
-          linkBtn.innerText = '[ 查看系列作品 ↗ ]';
-        }
-        linkBtn.classList.remove('hidden');
-      } else {
-        linkBtn.classList.add('hidden');
-      }
-
       const tagContainer = document.getElementById('modal-tags');
       tagContainer.innerHTML = '';
-      (tags || []).forEach(t => {
+      (proj.tags || []).forEach(t => {
         const span = document.createElement('span');
         span.className = 'tag-box text-[10px] bg-cblue text-white';
         span.innerText = '#' + t;
         tagContainer.appendChild(span);
       });
+
+      // 彈窗按鈕群組設定
+      const btnGroup = document.getElementById('modal-btn-group');
+      btnGroup.innerHTML = '';
+
+      if (proj.externalUrl) {
+        btnGroup.innerHTML += `
+          <a href="${proj.externalUrl}" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 bg-white text-cblue border-2 border-cblue font-black text-xs uppercase tracking-wider text-center hover:bg-cblue hover:text-white transition-colors shadow-[3px_3px_0px_#001489]">
+            [ 前往網站 ↗ ]
+          </a>
+        `;
+      }
+
+      if (proj.detailUrl) {
+        btnGroup.innerHTML += `
+          <a href="${proj.detailUrl}" class="flex-1 py-3 bg-white text-cblue border-2 border-cblue font-black text-xs uppercase tracking-wider text-center hover:bg-cblue hover:text-white transition-colors shadow-[3px_3px_0px_#001489]">
+            [ 查看更多 ➔ ]
+          </a>
+        `;
+      }
+
+      btnGroup.innerHTML += `
+        <button onclick="closeModal()" class="flex-1 py-3 bg-cblue text-white font-black text-xs uppercase tracking-wider hover:bg-[#001489] transition-colors border-2 border-cblue">
+          [ 關閉 CLOSE ]
+        </button>
+      `;
 
       modal.classList.remove('opacity-0', 'pointer-events-none');
     }
@@ -664,7 +606,7 @@
       if (e.target === modal) closeModal();
     });
 
-    // 4. 一鍵複製信箱
+    // 3. 一鍵複製信箱
     function copyMail(btn) {
       const email = 't113ac2001@ntut.org.tw';
       navigator.clipboard.writeText(email).then(() => {
@@ -675,7 +617,6 @@
       });
     }
 
-    window.addEventListener('focus', loadProjects);
     loadProjects();
   </script>
 </body>

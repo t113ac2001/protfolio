@@ -3,14 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>插畫系列 ★</title>
-  <!-- Tailwind CSS CDN -->
+  <title>活動規劃設計 ★ EVENT PLANNING</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <script>
@@ -101,11 +98,15 @@
       <a href="index.html" class="tag-box-white flex items-center gap-2 hover:bg-cblue hover:text-white transition-colors">
         <i data-lucide="arrow-left" class="w-4 h-4"></i> BACK TO PORTFOLIO
       </a>
+      <span class="tag-box font-mono text-xs hidden sm:inline-block">
+        ★ ARCHIVE : EVENT & WEB PLANNING
+      </span>
     </div>
 
-    <div class="tag-box text-xs font-mono font-bold">
-      ILLUSTRATION  ★
-    </div>
+    <!-- 直連線上網站按鈕 -->
+    <a href="https://twdohit.vercel.app" target="_blank" rel="noopener noreferrer" class="tag-box-white text-xs font-bold hover:bg-cblue hover:text-white transition-colors flex items-center gap-1.5 cursor-pointer">
+      <span>前往線上應援網站</span> <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+    </a>
   </header>
 
   <!-- 頁面標題區 -->
@@ -113,58 +114,50 @@
     <div class="flex flex-col md:flex-row md:items-end justify-between border-b-2 border-white pb-6 mb-8 gap-4">
       <div>
         <div class="flex items-center gap-2 text-blue-200 text-xs font-mono mb-2">
-          <span>// ILLUSTRATION ARCHIVE</span>
+          <span>// EVENT & INTERACTION ARCHIVE</span>
           <span>✦✦✦</span>
         </div>
-        <h1 class="text-4xl sm:text-6xl font-display font-black text-white">插畫作品</h1>
+        <h1 class="text-4xl sm:text-6xl font-display font-black text-white">活動規劃設計</h1>
       </div>
       <div class="text-left md:text-right">
-        <span class="tag-box-white text-xs font-bold" id="gallery-total-count">0 ARTWORKS</span>
+        <span class="tag-box-white text-xs font-bold" id="gallery-total-count">0 RECORDS</span>
         <p class="text-blue-100 text-xs mt-1 font-sans">
-          點擊任意圖片即可開啟全螢幕相片檢視器。
+          整合粉絲應援、互動平台與活動流程規劃。點擊卡片放大瀏覽。
         </p>
       </div>
     </div>
 
-    <!-- 插畫作品列表網格 -->
+    <!-- 作品列表網格 -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="gallery-grid"></div>
   </main>
 
-  <!-- 左右切換式大圖燈箱 Modal -->
+  <!-- 左右切換大圖燈箱 Modal -->
   <div id="img-modal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-cblue/90 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300" onclick="closePreview()">
     <div class="relative max-w-4xl w-full bg-white border-4 border-white shadow-[12px_12px_0px_#000] p-4 sm:p-6 text-cblue" onclick="event.stopPropagation()">
-      
-      <!-- 頂部資訊列 -->
       <div class="flex items-center justify-between border-b-2 border-cblue pb-3 mb-4">
         <div class="flex items-center gap-2">
-          <span id="preview-index" class="tag-box-white text-[11px]">FIG. 01 / 05</span>
-          <span class="text-xs font-mono uppercase font-bold text-gray-500">GALLERY VIEWER</span>
+          <span id="preview-index" class="tag-box-white text-[11px]">FIG. 01 / 03</span>
+          <span class="text-xs font-mono uppercase font-bold text-gray-500">EVENT PLANNING VIEWER</span>
         </div>
         <button onclick="closePreview()" class="tag-box hover:bg-cblue hover:text-white transition-colors text-xs font-bold flex items-center gap-1 cursor-pointer">
           ✕ CLOSE [ESC]
         </button>
       </div>
 
-      <!-- 圖片展示區 -->
       <div class="relative w-full h-[55vh] sm:h-[65vh] bg-cblue border-2 border-cblue overflow-hidden flex items-center justify-center group">
         <img id="preview-src" src="" alt="Full Preview" class="w-full h-full object-contain select-none" />
-
-        <!-- 上一張按鈕 -->
         <button onclick="prevImage(event)" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white text-cblue border-2 border-cblue p-2.5 sm:p-3 font-black shadow-[3px_3px_0px_#001489] hover:scale-110 active:translate-x-1 transition-all z-20 cursor-pointer" title="上一張 (←)">
           <i data-lucide="chevron-left" class="w-5 h-5 sm:w-6 sm:h-6"></i>
         </button>
-
-        <!-- 下一張按鈕 -->
         <button onclick="nextImage(event)" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white text-cblue border-2 border-cblue p-2.5 sm:p-3 font-black shadow-[3px_3px_0px_#001489] hover:scale-110 active:translate-x-1 transition-all z-20 cursor-pointer" title="下一張 (→)">
           <i data-lucide="chevron-right" class="w-5 h-5 sm:w-6 sm:h-6"></i>
         </button>
       </div>
 
-      <!-- 底部作品說明與切換鍵 -->
       <div class="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
         <div>
           <h3 class="font-display font-black text-xl" id="preview-title">作品標題</h3>
-          <p class="text-xs text-gray-600 font-mono mt-0.5" id="preview-desc">PROCREATE / DIGITAL ART</p>
+          <p class="text-xs text-gray-600 font-mono mt-0.5" id="preview-desc">EVENT PLANNING</p>
         </div>
         <div class="flex gap-2">
           <button onclick="prevImage(event)" class="px-4 py-2 bg-cblue text-white font-bold text-xs uppercase tracking-wider hover:bg-[#001489] transition-colors border border-cblue cursor-pointer">
@@ -179,74 +172,62 @@
   </div>
 
   <script>
-    // 預設插畫相片資料
-    const artworks = [
+    // 活動規劃設計圖檔資料 (可自行增加圖片)
+    const eventArtworks = [
       {
-        id: 'init_1',
-        src: '未命名-8_工作區域 1 複本.jpg',
-        title: '2026TXT演唱會應援團隊角色插畫',
-        desc: 'PROCREATE'
-      },
-      {
-        id: 'init_2',
-        src: '未命名-8_工作區域 1 複本 4.jpg',
-        title: '2026TXT演唱會應援團隊角色插畫',
-        desc: 'PROCREATE'
-      },
-      {
-        id: 'init_3',
-        src: '未命名-8_工作區域 1 複本 2.jpg',
-        title: '2026TXT演唱會應援團隊角色插畫',
-        desc: 'PROCREATE'
-      },
-      {
-        id: 'init_4',
-        src: '未命名的作品.jpeg',
-        title: '2026TXT演唱會應援團隊角色插畫',
-        desc: 'PROCREATE'
-      },
-      {
-        id: 'init_5',
-        src: '未命名的作品 83.jpeg',
-        title: '2026TXT演唱會應援團隊角色插畫',
-        desc: 'PROCREATE'
-      },
-      {
-        id: 'init_5',
-        src: '未命名的作品 12.jpg',
-        title: 'D.O. DUMB 插畫',
-        desc: 'PROCREATE'
-      },
-      {
-        id: 'init_5',
-        src: '未命名的作品 15.jpg',
-        title: '裴珍映插畫',
-        desc: 'PROCREATE'
-      },
-      {
-        id: 'init_5',
-        src: 'IMG_6618.jpg',
-        title: '應援集資禮插畫',
-        desc: 'PROCREATE'
+        id: 'event_art_1',
+        src: '截圖 2026-09-09 下午12.44.57.jpeg',
+        title: '演唱會應援網站 - 主視覺與功能首頁',
+        desc: 'twdohit.vercel.app / UI & INTERACTION'
       },
        {
-        id: 'init_5',
-        src: '未命名的作品 13.jpg',
-        title: '一顆檸檬',
-        desc: 'PROCREATE'
-      }
+        id: 'event_art_2',
+        src: '截圖 2026-10-02 上午1.46.28.png', 
+        title: '2026應援團隊主視覺設計',
+        desc: 'EVENT VISUAL DESIGN'
+      },
+      {
+        id: 'event_art_2',
+        src: '截圖 2026-10-02 上午1.40.21.png', 
+        title: '2025應援團隊主視覺設計',
+        desc: 'EVENT VISUAL DESIGN'
+      },
+      {
+        id: 'event_art_3',
+        src: 'Gxedsiqa0AAffcF.jpeg',
+        title: '2025 DO it! in Taipei 手幅設計',
+        desc: 'EVENT DESIGN'
+      },
+       {
+        id: 'event_art_3',
+        src: ' 截圖 2026-10-02 上午1.51.22.png',
+        title: '2025 展架設計',
+        desc: 'EVENT DESIGN'
+      },
+       {
+        id: 'event_art_3',
+        src: ' 布條.jpg',
+        title: '2025 布條設計',
+        desc: 'EVENT DESIGN'
+      },
+       {
+        id: 'event_art_3',
+        src: 'GQ07GJfbMAAEv8D.jpeg',
+        title: '2024 BLOOM in TAIPEI 手幅設計',
+        desc: 'EVENT DESIGN'
+      },
+     
     ];
 
     let currentImgIndex = 0;
 
-    // 渲染畫廊卡片
     function renderGallery() {
       const grid = document.getElementById('gallery-grid');
       const totalCount = document.getElementById('gallery-total-count');
-      totalCount.innerText = `${artworks.length} ARTWORKS`;
+      totalCount.innerText = `${eventArtworks.length} RECORDS`;
       grid.innerHTML = '';
 
-      artworks.forEach((art, idx) => {
+      eventArtworks.forEach((art, idx) => {
         const card = document.createElement('div');
         card.className = 'gallery-card p-4 flex flex-col justify-between cursor-pointer group';
         card.onclick = () => openLightbox(idx);
@@ -259,7 +240,7 @@
           </div>
           <div class="text-cblue">
             <h3 class="font-display font-black text-lg group-hover:text-blue-700 transition-colors">${art.title}</h3>
-            <p class="text-xs text-gray-600 mt-1 font-mono">${art.desc || 'PROCREATE'}</p>
+            <p class="text-xs text-gray-600 mt-1 font-mono">${art.desc}</p>
           </div>
         `;
         grid.appendChild(card);
@@ -267,40 +248,35 @@
       lucide.createIcons();
     }
 
-    // 全圖燈箱瀏覽（可直接左右切換全部作品）
     function openLightbox(index) {
-      if (!artworks || artworks.length === 0) return;
+      if (!eventArtworks || eventArtworks.length === 0) return;
       currentImgIndex = index;
       updateLightboxContent();
-      const modal = document.getElementById('img-modal');
-      modal.classList.remove('opacity-0', 'pointer-events-none');
+      document.getElementById('img-modal').classList.remove('opacity-0', 'pointer-events-none');
     }
 
     function updateLightboxContent() {
-      const art = artworks[currentImgIndex];
+      const art = eventArtworks[currentImgIndex];
       document.getElementById('preview-src').src = art.src;
       document.getElementById('preview-title').innerText = art.title;
-      document.getElementById('preview-desc').innerText = art.desc || 'PROCREATE';
-      document.getElementById('preview-index').innerText = `FIG. 0${currentImgIndex + 1} / 0${artworks.length}`;
+      document.getElementById('preview-desc').innerText = art.desc;
+      document.getElementById('preview-index').innerText = `FIG. 0${currentImgIndex + 1} / 0${eventArtworks.length}`;
       lucide.createIcons();
     }
 
     function closePreview() {
-      const modal = document.getElementById('img-modal');
-      modal.classList.add('opacity-0', 'pointer-events-none');
+      document.getElementById('img-modal').classList.add('opacity-0', 'pointer-events-none');
     }
 
     function prevImage(e) {
       if (e) e.stopPropagation();
-      if (!artworks || artworks.length === 0) return;
-      currentImgIndex = (currentImgIndex - 1 + artworks.length) % artworks.length;
+      currentImgIndex = (currentImgIndex - 1 + eventArtworks.length) % eventArtworks.length;
       updateLightboxContent();
     }
 
     function nextImage(e) {
       if (e) e.stopPropagation();
-      if (!artworks || artworks.length === 0) return;
-      currentImgIndex = (currentImgIndex + 1) % artworks.length;
+      currentImgIndex = (currentImgIndex + 1) % eventArtworks.length;
       updateLightboxContent();
     }
 
@@ -313,11 +289,24 @@
       }
     });
 
-    // 星芒點擊特效 (桌機 + 手機觸控支援)
+    // 星芒效果
     const starShapes = ['★', '✦', '✶', '✸', '✹'];
     function handleScreenTouch(clientX, clientY, target) {
       if (target && target.closest('#img-modal') && !target.closest('button')) return;
-      spawnStar(clientX, clientY);
+      for (let i = 0; i < 5; i++) {
+        const star = document.createElement('div');
+        star.className = 'star-particle text-white font-bold select-none pointer-events-none';
+        star.innerText = starShapes[Math.floor(Math.random() * starShapes.length)];
+        const angle = Math.random() * Math.PI * 2;
+        const dist = 25 + Math.random() * 55;
+        star.style.setProperty('--dx', Math.cos(angle) * dist + 'px');
+        star.style.setProperty('--dy', Math.sin(angle) * dist + 'px');
+        star.style.left = `${clientX}px`;
+        star.style.top = `${clientY}px`;
+        star.style.fontSize = 16 + Math.random() * 18 + 'px';
+        document.body.appendChild(star);
+        setTimeout(() => star.remove(), 1000);
+      }
     }
 
     window.addEventListener('click', (e) => {
@@ -327,32 +316,8 @@
 
     window.addEventListener('touchstart', (e) => {
       if (!e.touches || e.touches.length === 0) return;
-      const touch = e.touches[0];
-      handleScreenTouch(touch.clientX, touch.clientY, e.target);
+      handleScreenTouch(e.touches[0].clientX, e.touches[0].clientY, e.target);
     }, { passive: true });
-
-    function spawnStar(x, y) {
-      const count = 5;
-      for (let i = 0; i < count; i++) {
-        const star = document.createElement('div');
-        star.className = 'star-particle text-white font-bold select-none pointer-events-none';
-        star.innerText = starShapes[Math.floor(Math.random() * starShapes.length)];
-        const angle = Math.random() * Math.PI * 2;
-        const dist = 25 + Math.random() * 55;
-        const dx = Math.cos(angle) * dist + 'px';
-        const dy = Math.sin(angle) * dist + 'px';
-        const size = 16 + Math.random() * 18 + 'px';
-
-        star.style.setProperty('--dx', dx);
-        star.style.setProperty('--dy', dy);
-        star.style.left = `${x}px`;
-        star.style.top = `${y}px`;
-        star.style.fontSize = size;
-
-        document.body.appendChild(star);
-        setTimeout(() => star.remove(), 1000);
-      }
-    }
 
     renderGallery();
   </script>
