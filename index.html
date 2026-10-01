@@ -344,17 +344,33 @@
         <div class="border border-white p-4 text-center hover:bg-white hover:text-cblue transition-colors cursor-default">
           <div class="text-2xl mb-1">✦</div>
           <div class="font-bold text-sm">視覺設計</div>
-          <div class="text-[10px] opacity-70">Poster / Layout</div>
+          <div class="text-[10px] opacity-70"> Visual Design </div>
         </div>
         <div class="border border-white p-4 text-center hover:bg-white hover:text-cblue transition-colors cursor-default">
           <div class="text-2xl mb-1">✦</div>
           <div class="font-bold text-sm">網頁設計</div>
-          <div class="text-[10px] opacity-70">Figma / Dynamic UI</div>
+          <div class="text-[10px] opacity-70">（我會一點）</div>
         </div>
         <div class="border border-white p-4 text-center hover:bg-white hover:text-cblue transition-colors cursor-default">
           <div class="text-2xl mb-1">✦</div>
           <div class="font-bold text-sm">插畫繪圖</div>
-          <div class="text-[10px] opacity-70">Prompt / Styling</div>
+          <div class="text-[10px] opacity-70">illustration</div>
+           </div>
+        <div class="border border-white p-4 text-center hover:bg-white hover:text-cblue transition-colors cursor-default">
+          <div class="text-2xl mb-1">✦</div>
+          <div class="font-bold text-sm">網頁設計</div>
+          <div class="text-[10px] opacity-70">（我會一點）</div>
+        </div>
+           <div class="border border-white p-4 text-center hover:bg-white hover:text-cblue transition-colors cursor-default">
+          <div class="text-2xl mb-1">✦</div>
+          <div class="font-bold text-sm">逐格動畫</div>
+          <div class="text-[10px] opacity-70">（我會一點）</div>
+          </div>
+         <div class="border border-white p-4 text-center hover:bg-white hover:text-cblue transition-colors cursor-default">
+          <div class="text-2xl mb-1">✦</div>
+          <div class="font-bold text-sm">追星</div>
+          <div class="text-[10px] opacity-70">我最拿手＊比讚＊</div>
+        </div>
         </div>
       </div>
     </div>
@@ -445,7 +461,7 @@
         img: '未命名的作品.jpeg',
         tags: ['Procreate', 'Illustration', 'TXT 2026', 'FanSupport'],
         link: 'works.html',
-        isGalleryTicket: true // 特殊標記：採用門票式按鈕與相簿疊卡
+        isGalleryTicket: true
       }
     ];
 
@@ -469,7 +485,7 @@
         if (proj.isGalleryTicket || proj.link === 'works.html') {
           linkBtnHtml = `
             <a href="works.html" onclick="event.stopPropagation();" class="ticket-btn text-[11px] font-black py-1.5 px-3 inline-flex items-center gap-1.5">
-              <span> 查看更多。。。 (4)</span>
+              <span> 查看更多 </span>
               <i data-lucide="arrow-up-right" class="w-3.5 h-3.5"></i>
             </a>
           `;
@@ -512,25 +528,40 @@
       lucide.createIcons();
     }
 
-    // 1. 全螢幕點擊產生放射星芒效果
+   //1. 全螢幕點擊 & 手機觸控產生放射星芒效果 (支援手機與桌機)
     const starShapes = ['★', '✦', '✶', '✸', '✹'];
+
+    // 統一觸發函式
+    function handleScreenTouch(clientX, clientY, target) {
+      if (target && target.closest('#info-modal') && !target.closest('button')) return;
+      spawnStar(clientX, clientY);
+    }
+
+    // 桌機滑鼠點擊監聽
     window.addEventListener('click', (e) => {
-      if (e.target.closest('#info-modal') && !e.target.closest('button')) return;
-      spawnStar(e.clientX, e.clientY);
+      if (e.detail === 0 && 'ontouchstart' in window) return;
+      handleScreenTouch(e.clientX, e.clientY, e.target);
     });
+
+    // 手機觸控監聽
+    window.addEventListener('touchstart', (e) => {
+      if (!e.touches || e.touches.length === 0) return;
+      const touch = e.touches[0];
+      handleScreenTouch(touch.clientX, touch.clientY, e.target);
+    }, { passive: true });
 
     function spawnStar(x, y) {
       const count = 5;
       for (let i = 0; i < count; i++) {
         const star = document.createElement('div');
-        star.className = 'star-particle text-white font-bold select-none';
+        star.className = 'star-particle text-white font-bold select-none pointer-events-none';
         star.innerText = starShapes[Math.floor(Math.random() * starShapes.length)];
         
         const angle = Math.random() * Math.PI * 2;
-        const dist = 30 + Math.random() * 60;
+        const dist = 25 + Math.random() * 55;
         const dx = Math.cos(angle) * dist + 'px';
         const dy = Math.sin(angle) * dist + 'px';
-        const size = 16 + Math.random() * 20 + 'px';
+        const size = 16 + Math.random() * 18 + 'px';
 
         star.style.setProperty('--dx', dx);
         star.style.setProperty('--dy', dy);
@@ -543,11 +574,18 @@
       }
     }
 
+    //按鈕主動施放星芒
     function burstStars(e) {
       e.stopPropagation();
-      const rect = e.target.getBoundingClientRect();
-      const x = rect.left + rect.width / 2;
-      const y = rect.top + rect.height / 2;
+      let x, y;
+      if (e.touches && e.touches.length > 0) {
+        x = e.touches[0].clientX;
+        y = e.touches[0].clientY;
+      } else {
+        const rect = e.target.getBoundingClientRect();
+        x = rect.left + rect.width / 2;
+        y = rect.top + rect.height / 2;
+      }
       for (let i = 0; i < 4; i++) {
         setTimeout(() => spawnStar(x, y), i * 120);
       }
