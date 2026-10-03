@@ -23,7 +23,7 @@
           },
           colors: {
             cblue: {
-              DEFAULT: '#002BFF', // 正克萊因藍
+              DEFAULT: '#002BFF',
               dark: '#001489',
               light: '#E0E7FF',
               sky: '#93C5FD'
@@ -43,7 +43,7 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* 網格背景紋理 */
+    /* 背景 */
     .bg-grid-pattern {
       background-size: 32px 32px;
       background-image: 
@@ -51,7 +51,7 @@
         linear-gradient(to bottom, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
     }
 
-    /* 剪貼標籤框線樣式 */
+    /* 剪貼標籤 */
     .tag-box {
       border: 1px solid #ffffff;
       background: rgba(0, 43, 255, 0.85);
@@ -75,7 +75,7 @@
       box-shadow: 2px 2px 0px #001489;
     }
 
-    /* 撕紙/斜角剪貼卡片效果 */
+    /* 剪貼卡片 */
     .collage-card {
       background: #ffffff;
       color: #002BFF;
@@ -88,7 +88,7 @@
       box-shadow: 12px 12px 0px #ffffff;
     }
 
-    /* 無縫循環跑馬燈核心設定 */
+    /* 跑馬燈設定 */
     .marquee-wrapper {
       display: flex;
       overflow: hidden;
@@ -108,7 +108,7 @@
       to { transform: translateX(-100%); }
     }
 
-    /* 多張相片疊層視覺效果 */
+    /* 相片疊層 */
     .stacked-cards {
       position: relative;
     }
@@ -125,7 +125,7 @@
       transform: rotate(2deg);
     }
 
-    /* 滑鼠點擊生成的小星星粒子動畫 */
+    /* 生成小星星 */
     .star-particle {
       position: fixed;
       pointer-events: none;
@@ -151,7 +151,7 @@
 
 <body class="bg-grid-pattern relative selection:bg-white selection:text-cblue">
 
-  <!-- 頂部無縫循環跑馬燈 Ticker -->
+  <!-- 頂部無縫循環跑馬燈 -->
   <div class="bg-white text-cblue font-black py-2 overflow-hidden border-b-2 border-black z-50 relative text-xs tracking-widest uppercase shadow-sm">
     <div class="marquee-wrapper">
       <div class="marquee-track">
@@ -173,7 +173,7 @@
     </div>
   </div>
 
-  <!-- 導覽列 Navigation -->
+  <!-- 導覽列 -->
   <header class="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between relative z-40">
     <div class="flex items-center gap-3">
       <div class="w-8 h-8 bg-white text-cblue flex items-center justify-center font-black rounded-sm shadow-[2px_2px_0px_#000]">
@@ -190,7 +190,7 @@
     </nav>
   </header>
 
-  <!-- 主視覺 Hero Section -->
+  <!-- 主視覺 -->
   <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-4 pb-20 relative">
     
     <!-- 頂部資訊列：標籤與版權小字 -->
@@ -209,7 +209,7 @@
       </div>
     </div>
 
-    <!-- 巨型剪貼排版標題區塊 -->
+    <!-- 剪貼標題 -->
     <div class="relative w-full border-b-2 border-white pb-4 my-2">
       <div class="absolute -top-6 right-1/4 text-white opacity-20 pointer-events-none select-none text-[8rem] md:text-[12rem] leading-none animate-pulse">
         ✦
@@ -232,7 +232,7 @@
       </div>
     </div>
 
-    <!-- 簡介與特色標籤 -->
+    <!-- 簡介標籤 -->
     <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mt-10 items-center">
       <div class="md:col-span-7 space-y-6">
         <div class="flex items-center gap-2 flex-wrap">
@@ -257,7 +257,7 @@
         </div>
       </div>
 
-      <!-- 右側拼貼立體卡片 (支援放個人照片) -->
+      <!-- 右側拼貼卡片 -->
       <div class="md:col-span-5 relative flex justify-center">
         <div class="w-full max-w-sm bg-white p-5 rounded-none text-cblue border-4 border-white shadow-[12px_12px_0px_#001489] rotate-2 hover:rotate-0 transition-transform duration-300">
           <div class="flex justify-between items-center border-b-2 border-cblue pb-3 mb-3">
@@ -290,7 +290,7 @@
     </div>
   </section>
 
-  <!-- 作品展示區塊 Projects -->
+  <!-- 作品展示區 -->
   <section id="projects" class="py-20 px-6 max-w-7xl mx-auto border-t-2 border-white/20">
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
       <div>
@@ -303,11 +303,11 @@
       </div>
     </div>
 
-    <!-- 作品網格 (活動規劃設計 / 視覺設計 / 插畫) -->
+    <!-- 活動規劃設計 / 視覺設計 / 插畫 -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="works-grid"></div>
   </section>
 
-  <!-- 技能與工具區塊 (剪貼標籤牆) -->
+  <!-- 技能與工具 -->
   <section id="about" class="py-16 px-6 max-w-7xl mx-auto">
     <div class="border-2 border-white p-8 md:p-12 relative bg-cblue/60 backdrop-blur-sm">
       <div class="absolute -top-4 left-8 tag-box-white font-mono">
@@ -348,7 +348,7 @@
     </div>
   </section>
 
-  <!-- 聯絡與頁尾區塊 -->
+  <!-- 聯絡 -->
   <footer id="contact" class="py-20 px-6 max-w-7xl mx-auto border-t-2 border-white">
     <div class="flex flex-col md:flex-row items-center justify-between gap-8">
       <div>
@@ -371,7 +371,7 @@
     </div>
   </footer>
 
-  <!-- 彈窗 Modal -->
+  <!-- 彈窗 -->
   <div id="info-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-cblue/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
     <div class="bg-white text-cblue max-w-lg w-full p-6 sm:p-8 border-4 border-white shadow-[12px_12px_0px_#000] relative max-h-[90vh] overflow-y-auto">
       <div class="flex justify-between items-start border-b-2 border-cblue pb-3 mb-4">
@@ -396,7 +396,7 @@
     </div>
   </div>
 
-  <!-- 互動效果 JavaScript -->
+  <!-- 互動效果 -->
   <script>
     // 作品設定資料
     const projects = [
@@ -430,7 +430,7 @@
       }
     ];
 
-    // 初始化渲染作品列表
+    // 渲染作品
     function loadProjects() {
       const grid = document.getElementById('works-grid');
       grid.innerHTML = '';
@@ -440,10 +440,10 @@
         card.className = 'work-card collage-card p-6 cursor-pointer flex flex-col justify-between';
         card.onclick = () => openModal(proj);
 
-        // 按鈕區塊生成
+        // 按鈕
         let btnHtml = '<div class="flex items-center gap-2 flex-wrap">';
         
-        // 若有外部線上網站按鈕 (活動規劃設計)
+        // 活動規劃設計
         if (proj.externalUrl) {
           btnHtml += `
             <a href="${proj.externalUrl}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation();" class="tag-box-white hover:bg-cblue hover:text-white transition-colors text-[11px] font-bold py-1.5 px-3 inline-flex items-center gap-1 shadow-[2px_2px_0px_#001489]">
@@ -452,7 +452,7 @@
           `;
         }
 
-        // 查看更多按鈕
+        // 查看更多
         if (proj.detailUrl) {
           btnHtml += `
             <a href="${proj.detailUrl}" onclick="event.stopPropagation();" class="tag-box-white hover:bg-cblue hover:text-white transition-colors text-[11px] font-bold py-1.5 px-3 inline-flex items-center gap-1 shadow-[2px_2px_0px_#001489]">
@@ -485,7 +485,7 @@
       lucide.createIcons();
     }
 
-    // 1. 全螢幕點擊 & 手機觸控產生放射星芒效果
+    // 手機觸控產生星星效果
     const starShapes = ['★', '✦', '✶', '✸', '✹'];
 
     function handleScreenTouch(clientX, clientY, target) {
@@ -544,7 +544,7 @@
       }
     }
 
-    // 2. Modal 彈窗控制
+    // 彈窗控制
     const modal = document.getElementById('info-modal');
     function openModal(proj) {
       document.getElementById('modal-title').innerText = proj.title;
@@ -606,7 +606,7 @@
       if (e.target === modal) closeModal();
     });
 
-    // 3. 一鍵複製信箱
+    // 一鍵複製信箱
     function copyMail(btn) {
       const email = 't113ac2001@ntut.org.tw';
       navigator.clipboard.writeText(email).then(() => {
